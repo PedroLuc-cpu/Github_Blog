@@ -1,26 +1,30 @@
 import { API } from "../../axios-config";
 
-interface IUser{
-    login: string;
-    id: number;
-    avatar_url: string;
-    name: string;
-    company: string;
-    blog: string;
-    location: string;
-    bio: string;
-    public_repos: string;
-    followers: number;
-    following: number
-}
+ interface IUser{
+     login: string;
+     id: number;
+     avatar_url: string;
+     name: string;
+     company: string;
+     blog: string;
+     location: string;
+     bio: string;
+     public_repos: string;
+     following: number
+     followers: number;
+ }
 
-const getUser = async (user: IUser): Promise<IUser | Error> => {
+ type TUser = {
+    data: IUser[];
+ }
+
+const getUser = async (login: string): Promise< TUser | Error> => {
     try {
-        const {data} = await API.get(`"users/${user.login}`)
+        const {data} = await API.get(`/users/${login}`)
         if(data){
             return data
         }
-        return new Error(`User ${user.login} não encontrado`);
+        return new Error(`User ${login} não encontrado`);
     } catch (error) {
         console.log(error);
         return new Error((error as {message: string}).message || "Erro ao listar o registro")

@@ -1,3 +1,3 @@
 export const Environments = {
-    baseURL: "api.github.com/",
+    baseURL: "https://api.github.com",
 }
