@@ -1,6 +1,10 @@
 
 
+import axios from "axios";
+import { Environments } from "../../Environments/index"
 
-export const Environments = {
-    Url_Users: "api.github.com/users/",
-}
+const API = axios.create({
+    baseURL: Environments.baseURL
+})
+
+export { API };
