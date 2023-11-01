@@ -1,14 +1,17 @@
+import { ThemeProvider } from "styled-components"
+import { defaultTheme } from "./shared/styles/themes/default"
+import { GlobalStyle } from "./shared/styles/global.styled"
+import { GithubBlog } from "./page"
+
 function App() {
 
   
 
   return (
-   
-    <>
-      <p>
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+  <ThemeProvider theme={defaultTheme}>
+    <GlobalStyle/>
+      <GithubBlog/>
+  </ThemeProvider>
   )
 }
 
