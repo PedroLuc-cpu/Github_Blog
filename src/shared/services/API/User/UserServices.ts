@@ -1,6 +1,6 @@
 import { API } from "../../axios-config";
 
-interface IUser{
+export interface IUser{
     login: string;
     id: number;
     avatar_url: string;
@@ -13,16 +13,20 @@ interface IUser{
     following: number
     followers: number;
 }
-    
-type TUser = {
-    data: IUser[];
+
+type TUserCount = {
+    data: IUser[]
+    userCount: number
 }
 
-const getUser = async (login: string): Promise< TUser | Error> => {
+const getUser = async (login = ""): Promise<TUserCount | Error> => {
     try {
-        const {data} = await API.get(`/users/${login}`)
+        const {data, headers} = await API.get(`/users/${login}`)
         if(data){
-            return data
+            return {
+                data,
+                userCount: headers['x-total-count']
+            }
         }
         return new Error(`User ${login} não encontrado`);
     } catch (error) {
