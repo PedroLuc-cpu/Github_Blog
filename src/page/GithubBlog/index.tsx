@@ -7,6 +7,7 @@ import {
 } from "@phosphor-icons/react";
 
 import axios from 'axios';
+import { Header } from "../../shared/components/Header";
 
 export interface IUser{
     login: string;
@@ -34,7 +35,7 @@ const [user, setUser] = useState<IUser | null>(null);
       setUser(result.data);
     })
     .catch((error) => {
-      console.error('Erro na consulta do GitHub:', error);
+      alert(error.message);
     })
 
   }, []);
@@ -45,6 +46,7 @@ const [user, setUser] = useState<IUser | null>(null);
 
   return (
     <GithubBlogMain>
+      <Header/>
       <CardConteiner>
         <img src={user?.avatar_url} alt="user-github"  width={120}/>
         <div>

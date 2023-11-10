@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
-
 export const GithubBlogMain = styled.main`
 background: ${props => props.theme['base-background']};
 height: 100vh;
 `
 
 export const CardConteiner = styled.main`
+position: relative;
+bottom: 50px;
 border-radius: 1rem;
 margin: 0 auto;
 max-width:  54rem;
@@ -22,7 +23,7 @@ h3{
 }
 
 p{
- color: ${props => props.theme['base-text']};
+  color: ${props => props.theme['base-text']};
 }
 
 `
