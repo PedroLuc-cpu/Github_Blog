@@ -14,19 +14,12 @@ export interface IUser{
     followers: number;
 }
 
-type TUserCount = {
-    data: IUser[]
-    userCount: number
-}
 
-const getUser = async (login = ""): Promise<TUserCount | Error> => {
+const getUser = async (login = ""): Promise<IUser | Error> => {
     try {
-        const {data, headers} = await API.get(`/users/${login}`)
+        const {data} = await API.get(`/users/${login}`)
         if(data){
-            return {
-                data,
-                userCount: headers['x-total-count']
-            }
+            return data
         }
         return new Error(`User ${login} não encontrado`);
     } catch (error) {

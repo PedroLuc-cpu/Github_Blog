@@ -1,15 +1,11 @@
 import { useEffect, useState } from "react";
-import { GithubBlogMain, CardConteiner, ListIcons } from "./styled";
-import {
-  Buildings,
-  GithubLogo,
-  Users,
-} from "@phosphor-icons/react";
-
-import axios from 'axios';
+import { GithubBlogContainer,GithubBlogContent } from "./styled";
 import { Header } from "../../shared/components/Header";
+import { SearchPublication } from "../../shared/components";
+import { CardUser } from "../../shared/components/Card";
+import { API } from "../../shared/services/axios-config";
 
-export interface IUser{
+type IUser = {
     login: string;
     id: number;
     avatar_url: string;
@@ -17,61 +13,59 @@ export interface IUser{
     company: string;
     blog: string;
     html_url:string
-    location: string;
     bio: string;
-    public_repos: string;
-    following: number
-    followers: number;
+    public_repos: number | string;
+    followers: number | string;
 }
 
 
 export const GithubBlog = () => {
   
-const [user, setUser] = useState<IUser | null>(null);
+const [Users, setUsers] = useState<IUser | null>(null);
+const [isLoading, setIsLoading] = useState(true);
+
 
   useEffect(() => {
-    axios.get(`https://api.github.com/users/${"Pedroluc-cpu"}`)
-    .then((result) => {
-      setUser(result.data);
+    API.get("/users/pedroluc-cpu")
+    .then(response => {
+      setIsLoading(false)
+      setUsers(response.data)
+      
     })
-    .catch((error) => {
-      alert(error.message);
+    .catch(error => {
+      alert(error)
     })
+  },[] );
 
-  }, []);
+  console.log(Users)
 
-  console.log(user)
-
-
+  const hadleSearch = () => {
+    console.log("search")
+  }
 
   return (
-    <GithubBlogMain>
+    <GithubBlogContainer>
       <Header/>
-      <CardConteiner>
-        <img src={user?.avatar_url} alt="user-github"  width={120}/>
-        <div>
-          <h3>{user?.name}</h3>
-          <p>
-          {user?.bio}
-          </p>
-          <ListIcons>
-            <span>
-              <GithubLogo size={24} color="#ffff" weight="bold" />
-              <a href={user?.html_url} target="_blank" rel="noreferrer">
-                {user?.login}
-              </a>
-            </span>
-            <span>
-              <Buildings size={24} color="#ffff" weight="bold" />
-              <p>{user?.company}</p>
-            </span>
-            <span>
-              <Users size={24} color="#ffff" weight="bold" />
-              <p>{user?.followers}</p>
-            </span>
-          </ListIcons>
-        </div>
-      </CardConteiner>
-    </GithubBlogMain>
+      <GithubBlogContent>
+        <CardUser
+        login={Users?.login || ""}
+        name={Users?.name || ""}
+        bio={Users?.bio || ""}
+        blog={Users?.blog || ""}
+        company={Users?.company || ""}
+        html_url={Users?.html_url || ""}
+        followers={Users?.followers || "Não tem nenhum seguidor"}
+        avatar_url={Users?.avatar_url || "Sem foto"}
+        key={Users?.id}        
+        />
+        
+      <SearchPublication
+      isLoading={isLoading}
+      publication="Publicações"
+      publicationCount={Users?.public_repos || "Não tem nenhum repositório"}
+      handleChangeSearch={hadleSearch}
+      />
+      </GithubBlogContent>
+    </GithubBlogContainer>
   );
 };

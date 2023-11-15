@@ -1,8 +1,13 @@
 import styled from "styled-components";
 
-export const GithubBlogMain = styled.main`
+export const GithubBlogContainer = styled.main`
 background: ${props => props.theme['base-background']};
 height: 100vh;
+`
+
+export const GithubBlogContent = styled.div`
+
+/* background-color: red; */
 `
 
 export const CardConteiner = styled.main`
