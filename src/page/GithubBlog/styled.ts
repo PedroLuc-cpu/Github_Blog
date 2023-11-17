@@ -6,8 +6,11 @@ height: 100vh;
 `
 
 export const GithubBlogContent = styled.div`
+display: grid;
+justify-content: center;
+margin: 0 auto;
 
-/* background-color: red; */
+max-width:  54rem;
 `
 
 export const CardConteiner = styled.main`
@@ -15,7 +18,6 @@ position: relative;
 bottom: 50px;
 border-radius: 1rem;
 margin: 0 auto;
-max-width:  54rem;
 background: ${props => props.theme["base-profile"]};
 display: flex;
 align-items: center ;

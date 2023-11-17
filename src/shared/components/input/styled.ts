@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 
 export const SearchContent = styled.div`
-width: 45%;
+width: 100%;
 display: flex;
 flex-direction: column;
 margin:  0 auto;
