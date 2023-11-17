@@ -1,22 +1,10 @@
 import { useEffect, useState } from "react";
 import { GithubBlogContainer,GithubBlogContent } from "./styled";
 import { Header } from "../../shared/components/Header";
-import { SearchPublication } from "../../shared/components";
-import { CardUser } from "../../shared/components/Card";
+import { CardUser, SearchPublication } from "../../shared/components";
 import { API } from "../../shared/services/axios-config";
+import { IUser } from "../../@types/user";
 
-type IUser = {
-    login: string;
-    id: number;
-    avatar_url: string;
-    name: string;
-    company: string;
-    blog: string;
-    html_url:string
-    bio: string;
-    public_repos: number | string;
-    followers: number | string;
-}
 
 
 export const GithubBlog = () => {
@@ -40,7 +28,8 @@ const [isLoading, setIsLoading] = useState(true);
   console.log(Users)
 
   const hadleSearch = () => {
-    console.log("search")
+    
+
   }
 
   return (

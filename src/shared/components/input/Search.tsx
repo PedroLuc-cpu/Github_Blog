@@ -1,14 +1,9 @@
+import { TSearchPublication } from "../../../@types"
 import {SearchContent, SearchInput} from "./styled"
 
 
 
 
-type TSearchPublication = {
- publication: string;
- publicationCount: number | string
- isLoading: boolean
- handleChangeSearch: () => void;
-}
 
 export function SearchPublication({publication, publicationCount, handleChangeSearch, isLoading} : TSearchPublication){
 
@@ -23,7 +18,7 @@ export function SearchPublication({publication, publicationCount, handleChangeSe
       type="text" 
       name="SearchpublicationName" 
       id="Searchpublication" 
-      onChange={() => handleChangeSearch()}
+      onChange={(e) => handleChangeSearch(e.target.value)}
       placeholder="Buscar conteúdo"
     />
   </SearchContent>
