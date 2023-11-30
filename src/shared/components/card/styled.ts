@@ -26,7 +26,7 @@ p{
 
 export const ListIcons = styled.div`
 display: flex;
-column-gap: 1rem;
+column-gap: .5rem;
 padding-top: 1rem;
 
 a{
