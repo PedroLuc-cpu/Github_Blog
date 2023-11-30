@@ -30,20 +30,14 @@ export const CardUser = ({
         <h3>{login}</h3>
         <p>{bio}</p>
         <ListIcons>
-          <span>
-            <GithubLogo size={24} color="#ffff" weight="bold" />
+          <GithubLogo size={24} color="#ffff" weight="bold" />
             <a href={html_url} target="_blank" rel="noreferrer">
               {login}
             </a>
-          </span>
-          <span>
-            <Buildings size={24} color="#ffff" weight="bold" />
+          <Buildings size={24} color="#ffff" weight="bold" />
             <p>{company}</p>
-          </span>
-          <span>
             <Users size={24} color="#ffff" weight="bold" />
             <p>{followers}</p>
-          </span>
         </ListIcons>
       </div>
     </CardConteiner>

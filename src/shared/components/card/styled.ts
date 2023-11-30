@@ -29,4 +29,8 @@ display: flex;
 column-gap: 1rem;
 padding-top: 1rem;
 
+a{
+  color: ${props => props.theme["base-text"]};
+}
+
 `
